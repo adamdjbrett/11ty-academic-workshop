@@ -1,0 +1,147 @@
+---
+layout: layouts/home.njk
+title: Academic Workshop Zola Theme
+description: A workshop and seminar website theme, ported to Eleventy.
+---
+<div class="bg-even">
+  <section class="container content py-5">
+    <h1 id="design">Design</h1>
+    <p>Welcome to the <a href="https://github.com/aterenin/academic-workshop">Academic Workshop</a> theme. This Eleventy port preserves the original HTML and CSS visual system.</p>
+
+    <h2>Features</h2>
+    <ul>
+      <li>A customizable header with title, subtitle, banner, and CTA buttons.</li>
+      <li>Structured sections for speakers, organizers, schedule, papers, and seminars.</li>
+      <li>List cards for seminar pages with image, author, institution, date, and links.</li>
+      <li>Responsive CSS-only layout with no framework runtime dependency.</li>
+    </ul>
+  </section>
+</div>
+
+<div class="bg-odd">
+  <section class="container content py-5">
+    <h1>List of Speakers</h1>
+    <div class="grid mt-5 mb-4">
+      <div class="text-center mx-3"><a class="d-contents color-text" href="#speaker-a"><img class="rounded-circle mx-auto mb-3" alt="Speaker A" src="/placeholder.svg"><h2 class="h4 my-1">Speaker A</h2><h3 class="h6 my-1">Institution A</h3></a></div>
+      <div class="text-center mx-3"><a class="d-contents color-text" href="#speaker-b"><img class="rounded-circle mx-auto mb-3" alt="Speaker B" src="/placeholder.svg"><h2 class="h4 my-1">Speaker B</h2><h3 class="h6 my-1">Institution B</h3></a></div>
+      <div class="text-center mx-3"><a class="d-contents color-text" href="#speaker-c"><img class="rounded-circle mx-auto mb-3" alt="Speaker C" src="/placeholder.svg"><h2 class="h4 my-1">Speaker C</h2><h3 class="h6 my-1">Institution C</h3></a></div>
+      <div class="text-center mx-3"><a class="d-contents color-text" href="#speaker-d"><img class="rounded-circle mx-auto mb-3" alt="Speaker D" src="/placeholder.svg"><h2 class="h4 my-1">Speaker D</h2><h3 class="h6 my-1">Institution D</h3></a></div>
+      <div class="text-center mx-3"><a class="d-contents color-text" href="#speaker-e"><img class="rounded-circle mx-auto mb-3" alt="Speaker E" src="/placeholder.svg"><h2 class="h4 my-1">Speaker E</h2><h3 class="h6 my-1">Institution E</h3></a></div>
+    </div>
+  </section>
+</div>
+
+<div class="bg-even">
+  <section class="container content py-5">
+    <h1>List of Organizers</h1>
+    <div class="grid mt-5 mb-4">
+      <div class="text-center mx-3"><img class="rounded-circle mx-auto mb-3" alt="Organizer A" src="/organizers/organizer-a.jpg"><h2 class="h4 my-1">Organizer A</h2></div>
+      <div class="text-center mx-3"><img class="rounded-circle mx-auto mb-3" alt="Organizer B" src="/organizers/organizer-b.jpg"><h2 class="h4 my-1">Organizer B</h2></div>
+    </div>
+  </section>
+</div>
+
+<div class="bg-odd">
+  <section class="container content py-5">
+    <h1>Schedule</h1>
+    <table>
+      <thead>
+        <tr><th>Time</th><th>Event</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>12:00pm - 1:00pm</td><td>Introduction and Opening Remarks: Speaker Name A</td></tr>
+        <tr><td>1:00pm - 2:00pm</td><td>Speaker A</td></tr>
+        <tr><td>2:00pm - 3:00pm</td><td>Speaker B</td></tr>
+        <tr><td>3:00pm - 4:00pm</td><td>Discussion Panel</td></tr>
+      </tbody>
+    </table>
+  </section>
+</div>
+
+<div class="bg-even">
+  <section class="container content py-5">
+    <h1>Accepted Papers</h1>
+    <table>
+      <thead>
+        <tr><th>Title</th><th>Authors</th></tr>
+      </thead>
+      <tbody>
+        {% for row in papers %}
+          <tr>
+            <td>{{ row.Title }}</td>
+            <td>
+              {{ row.Authors }}
+              {% if row.Paper_URL %} <a class="btn small px-1 py-0" href="{{ row.Paper_URL }}">paper</a>{% endif %}
+              {% if row.Poster_URL %} <a class="btn small px-1 py-0" href="{{ row.Poster_URL }}">poster</a>{% endif %}
+            </td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </section>
+</div>
+
+<div class="bg-odd">
+  <section class="container content py-5">
+    <h1>Upcoming Seminar</h1>
+    <div class="d-flex flex-column mt-5">
+      {% for seminar in collections.seminars %}
+        {% if seminar.data.highlight %}
+          <div class="d-flex flex-column r:flex-row items-center r:items-start mb-4">
+            <a class="d-contents" href="{{ seminar.url }}">
+              <img class="rounded-circle mb-3" alt="{{ seminar.data.authorName or seminar.data.author }}" src="{{ seminar.data.image or '/placeholder.svg' }}">
+            </a>
+            <div class="mr-auto px-3">
+              <a href="{{ seminar.url }}"><h2 class="mb-1">{{ seminar.data.title }}</h2></a>
+              <a href="{{ seminar.data.authorUrl or seminar.data.author_url or '#' }}"><h3 class="h5 mb-2">{{ seminar.data.authorName or seminar.data.author }} &middot; {{ seminar.data.institution }}</h3></a>
+              <h4 class="h6 mb-3">{{ seminar.date | htmlDateString }}{% if seminar.data.time %} &middot; {{ seminar.data.time }}{% endif %}</h4>
+              {% if seminar.data.buttons %}
+                {% for button in seminar.data.buttons %}
+                  <a class="btn mb-3 mr-2" href="{{ button.url }}">{{ button.name }}</a>
+                {% endfor %}
+              {% endif %}
+              {% if seminar.data.video %}
+                <a class="btn mb-3 mr-2" href="{{ seminar.data.video }}">Video</a>
+              {% endif %}
+              {{ seminar.templateContent | safe }}
+            </div>
+          </div>
+        {% endif %}
+      {% endfor %}
+    </div>
+  </section>
+</div>
+
+<div class="bg-even">
+  <section class="container content py-5">
+    <h1>List of Seminars</h1>
+    <div class="d-flex flex-column mt-5">
+      {% for seminar in collections.seminars %}
+        {% if loop.index <= site.listPageLimit %}
+          <div class="d-flex flex-column r:flex-row items-center r:items-start mb-4">
+            <a class="d-contents" href="{{ seminar.url }}">
+              <img class="rounded-circle mb-3" alt="{{ seminar.data.authorName or seminar.data.author }}" src="{{ seminar.data.image or '/placeholder.svg' }}">
+            </a>
+            <div class="mr-auto px-3">
+              <a href="{{ seminar.url }}"><h2 class="mb-1">{{ seminar.data.title }}</h2></a>
+              <a href="{{ seminar.data.authorUrl or seminar.data.author_url or '#' }}"><h3 class="h5 mb-2">{{ seminar.data.authorName or seminar.data.author }} &middot; {{ seminar.data.institution }}</h3></a>
+              <h4 class="h6 mb-3">{{ seminar.date | htmlDateString }}{% if seminar.data.time %} &middot; {{ seminar.data.time }}{% endif %}</h4>
+              <a class="btn mb-3 mr-2" href="{{ seminar.url }}">Abstract</a>
+              {% if seminar.data.buttons %}
+                {% for button in seminar.data.buttons %}
+                  <a class="btn mb-3 mr-2" href="{{ button.url }}">{{ button.name }}</a>
+                {% endfor %}
+              {% endif %}
+              {% if seminar.data.video %}
+                <a class="btn mb-3 mr-2" href="{{ seminar.data.video }}">Video</a>
+              {% endif %}
+            </div>
+          </div>
+        {% endif %}
+      {% endfor %}
+    </div>
+    <div class="text-center">
+      <a class="btn mt-3" href="/seminars/">All Seminars</a>
+    </div>
+  </section>
+</div>

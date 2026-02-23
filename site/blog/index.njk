@@ -1,0 +1,25 @@
+---
+layout: layouts/index.njk
+title: Blog
+pagination:
+  data: collections.posts
+  size: 8
+  alias: postsPage
+permalink: "/blog/{% if pagination.pageNumber > 0 %}page/{{ pagination.pageNumber + 1 }}/{% endif %}index.html"
+---
+<h1>Blog</h1>
+<div class="d-flex flex-column mt-5">
+  {% for post in postsPage %}
+    <div class="d-flex flex-column r:flex-row items-center r:items-start mb-4">
+      <a class="d-contents" href="{{ post.url }}">
+        <img class="rounded-circle mb-3" alt="{{ post.data.title }}" src="{{ post.data.image or '/placeholder.svg' }}">
+      </a>
+      <div class="mr-auto px-3">
+        <a href="{{ post.url }}"><h2 class="mb-1">{{ post.data.title }}</h2></a>
+        <h4 class="h6 mb-3">{{ post.date | htmlDateString }}</h4>
+        <a class="btn mb-3 mr-2" href="{{ post.url }}">Read</a>
+      </div>
+    </div>
+  {% endfor %}
+</div>
+<p>{% if pagination.href.previous %}<a href="{{ pagination.href.previous }}">Newer</a>{% endif %} {% if pagination.href.next %}<a href="{{ pagination.href.next }}">Older</a>{% endif %}</p>

@@ -1,0 +1,33 @@
+---
+layout: layouts/index.njk
+---
+{% block content %}
+  <div class="d-flex flex-column r:flex-row items-center r:items-start mb-4">
+    <a class="d-contents" href="{{ page.url }}">
+      <img class="rounded-circle mb-3" alt="{{ authorName or author or title }}" src="{{ image or '/placeholder.svg' }}">
+    </a>
+    <div class="mr-auto px-3">
+      <a href="{{ page.url }}">
+        <h2 class="mb-1">{{ title }}</h2>
+      </a>
+      {% if authorName %}
+        <a href="{{ authorUrl or '#' }}">
+          <h3 class="h5 mb-2">{{ authorName }}{% if institution %} &middot; {{ institution }}{% endif %}</h3>
+        </a>
+      {% endif %}
+      {% if date %}
+        <h4 class="h6 mb-3">{{ date | htmlDateString }}{% if time %} &middot; {{ time }}{% endif %}</h4>
+      {% endif %}
+      <a class="btn mb-3 mr-2" href="{{ page.url }}">Abstract</a>
+      {% if buttons %}
+        {% for button in buttons %}
+          <a class="btn mb-3 mr-2" href="{{ button.url }}">{{ button.name }}</a>
+        {% endfor %}
+      {% endif %}
+      {% if video %}
+        <a class="btn mb-3 mr-2" href="{{ video }}">Video</a>
+      {% endif %}
+      {{ content | safe }}
+    </div>
+  </div>
+{% endblock %}

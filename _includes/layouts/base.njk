@@ -1,0 +1,44 @@
+{% set pageTitle = title or site.title.title or site.title %}
+{% set pageDescription = description or site.description %}
+{% set pageUrl = (page.url or "/") | absoluteUrl(site.url) %}
+{% set cardPath = card and card.url or site.card.url %}
+{% set cardUrl = cardPath | absoluteUrl(site.url) %}
+<!DOCTYPE html>
+<html lang="{{ site.language }}">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="/main.css">
+  {% if site.favicon %}
+    <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" type="image/png">
+  {% endif %}
+  <title>{{ pageTitle }}</title>
+  {% if author %}
+    <meta name="author" content="{{ author }}">
+  {% endif %}
+  {% if pageDescription %}
+    <meta name="description" content="{{ pageDescription }}">
+    <meta property="og:description" content="{{ pageDescription }}">
+  {% endif %}
+  <meta property="og:title" content="{{ pageTitle }}">
+  <link rel="canonical" href="{{ pageUrl }}">
+  <meta property="og:url" content="{{ pageUrl }}">
+  <meta property="og:type" content="website">
+  {% if cardPath %}
+    <meta property="og:image" content="{{ cardUrl }}">
+    <meta property="og:image:type" content="image/png">
+    <meta name="twitter:card" content="{% if card and card.large %}summary_large_image{% else %}summary{% endif %}">
+    <meta property="twitter:image" content="{{ cardUrl }}">
+  {% endif %}
+  <meta property="twitter:title" content="{{ pageTitle }}">
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebSite",{% if pageDescription %}"description":"{{ pageDescription }}",{% endif %}"headline":"{{ pageTitle }}",{% if cardPath %}"image":"{{ cardUrl }}",{% endif %}"name":"{{ pageTitle }}","url":"{{ pageUrl }}"}</script>
+  {% block head_includes %}{% endblock %}
+</head>
+<body>
+  {% block nav %}{% endblock %}
+  {% block header %}{% endblock %}
+  {% block main %}{% endblock %}
+  {% block footer %}{% endblock %}
+</body>
+</html>

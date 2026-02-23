@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
+  <title>[object Object]</title>
+  <subtitle>A Zola-inspired workshop and seminar theme ported to Eleventy.</subtitle>
+  <link href="http://localhost:8080/feed/feed.xml" rel="self"/>
+  <link href="http://localhost:8080/"/>
+  <id>http://localhost:8080/</id>
+  <updated>2026-01-15T00:00:00.000Z</updated>
+  <author><name>Alexander Terenin</name></author>
+  
+  <entry>
+    <title>Port Notes</title>
+    <link href="http://localhost:8080/posts/2026-01-15-port-notes/"/>
+    <id>http://localhost:8080/posts/2026-01-15-port-notes/</id>
+    <updated>2026-01-15T00:00:00.000Z</updated>
+    <summary>Implementation notes for this 11ty conversion.</summary>
+  </entry>
+  
+  <entry>
+    <title>Welcome to Academic Workshop</title>
+    <link href="http://localhost:8080/posts/2026-01-01-welcome/"/>
+    <id>http://localhost:8080/posts/2026-01-01-welcome/</id>
+    <updated>2026-01-01T00:00:00.000Z</updated>
+    <summary>Initial post for the Eleventy port of Academic Workshop.</summary>
+  </entry>
+  
+</feed>

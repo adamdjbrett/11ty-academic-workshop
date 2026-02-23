@@ -1,0 +1,29 @@
+---
+layout: layouts/index.njk
+title: List of Seminars
+permalink: /seminars/
+---
+<h1>List of Seminars</h1>
+<div class="d-flex flex-column mt-5">
+  {% for seminar in collections.seminars %}
+    <div class="d-flex flex-column r:flex-row items-center r:items-start mb-4">
+      <a class="d-contents" href="{{ seminar.url }}">
+        <img class="rounded-circle mb-3" alt="{{ seminar.data.authorName or seminar.data.author }}" src="{{ seminar.data.image or '/placeholder.svg' }}">
+      </a>
+      <div class="mr-auto px-3">
+        <a href="{{ seminar.url }}"><h2 class="mb-1">{{ seminar.data.title }}</h2></a>
+        <a href="{{ seminar.data.authorUrl or seminar.data.author_url or '#' }}"><h3 class="h5 mb-2">{{ seminar.data.authorName or seminar.data.author }} &middot; {{ seminar.data.institution }}</h3></a>
+        <h4 class="h6 mb-3">{{ seminar.date | htmlDateString }}{% if seminar.data.time %} &middot; {{ seminar.data.time }}{% endif %}</h4>
+        <a class="btn mb-3 mr-2" href="{{ seminar.url }}">Abstract</a>
+        {% if seminar.data.buttons %}
+          {% for button in seminar.data.buttons %}
+            <a class="btn mb-3 mr-2" href="{{ button.url }}">{{ button.name }}</a>
+          {% endfor %}
+        {% endif %}
+        {% if seminar.data.video %}
+          <a class="btn mb-3 mr-2" href="{{ seminar.data.video }}">Video</a>
+        {% endif %}
+      </div>
+    </div>
+  {% endfor %}
+</div>

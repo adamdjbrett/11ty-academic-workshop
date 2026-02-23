@@ -1,0 +1,17 @@
+/* THEME PORT CREDIT */
+Theme: Academic Workshop
+Original Theme Homepage: https://github.com/aterenin/academic-workshop
+Original Theme Author: Alexander Terenin
+Original Theme License: MIT
+Original Theme Demo: https://aterenin.github.io/academic-workshop
+
+/* GITHUB AUTHORS / CONTRIBUTORS (from git history) */
+Contributors:
+- aterenin <aterenin@users.noreply.github.com>
+- Alexander Terenin <aterenin@users.noreply.github.com>
+
+Co-authors:
+- (none detected)
+
+/* TECHNOLOGY */
+Built with: Eleventy 3.1.2, ESM, Nunjucks, Luxon
