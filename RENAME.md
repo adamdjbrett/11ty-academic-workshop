@@ -1,9 +1,10 @@
-# Academic Workshop: a Zola theme
+# 11ty Port of Academic Workshop a Zola Theme
+## Academic Workshop: a Zola theme
 
 [Academic Workshop](https://aterenin.github.io/academic-workshop) is a Zola theme desgned for hosting a website for scientific workshop or scientific seminar series.
 A demo website built with Academic Workshop can be found at [aterenin.github.io/academic-workshop](https://aterenin.github.io/academic-workshop), and example repositories using this theme, for a seminar series and workshop, respectively, can be found at [github.com/gp-seminar-series/gp-seminar-series.github.io](https://github.com/gp-seminar-series/gp-seminar-series.github.io) and [https://github.com/gp-seminar-series/neurips-2024](https://github.com/gp-seminar-series/neurips-2024).
 
-# Features
+## Features
 
 [Academic Workshop](https://github.com/aterenin/academic-workshop) is designed to be reasonably feature-complete. Its features include:
 
